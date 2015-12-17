@@ -217,11 +217,9 @@ rl.
     var a = circuit.wires['a'];
     
     // find the instruction that sets wire 'b' and change its value to the current value of wire 'a'
-    circuit.instructions.forEach(function(instruction) {
-      if (instruction.wireName === 'b') {
-        instruction.expr = a.toString();
-      }
-    })
+    circuit.instructions.find(function(instruction) {
+      return instruction.wireName === 'b';
+    }).expr = a.toString();
     
     // clear out the value of each existing wire
     Object.keys(circuit.wires).forEach(function(wireName) {
